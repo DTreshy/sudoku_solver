@@ -34,9 +34,14 @@ class Game:
                 row = floor(pos[1] / (WIN_WIDTH / 9) % 9)
                 self.grid.onClick(col, row)
             if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_c:
+                    self.grid.clear()
                 if event.key == pygame.K_SPACE:
-                    self.solve_grid()
-                if self.grid.clicked_spot is not None:
+                    if self.grid.is_full():
+                        self.grid.clear()
+                    else:
+                        self.solve_grid()
+                if self.grid.clicked_spot is not None and not self.grid.is_full():
                     key = None
                     if event.key == pygame.K_0:
                         key = 0

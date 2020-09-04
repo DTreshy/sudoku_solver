@@ -70,3 +70,10 @@ class Grid:
                 else:
                     array[self.grid[col_index, i].value - 1] = 1
         return True
+
+    def clear(self):
+        self.clicked_spot = None
+        for idx, spot in np.ndenumerate(self.grid):
+            spot.value = 0
+            spot.clicked = False
+            spot.highlighted = False
